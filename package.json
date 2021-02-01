@@ -1,0 +1,25 @@
+{
+  "name": "mltw_web_app_next",
+  "version": "1.0.0",
+  "description": "ssr with nextjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next -p 3001",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "hakii",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "axios": "^0.21.1",
+    "next": "^10.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "typescript": "^4.1.3"
+  }
+}
