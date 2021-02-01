@@ -1,6 +1,13 @@
 {
   "/_app": "pages/_app.js",
+  "/cards": "pages/cards.js",
+  "/events": "pages/events.js",
+  "/gachas": "pages/gachas.js",
+  "/idols": "pages/idols.js",
+  "/index - 複製": "pages/index - 複製.html",
+  "/": "pages/index.html",
+  "/songs": "pages/songs.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/songs": "pages/songs.js"
+  "/404": "pages/404.html"
 }
