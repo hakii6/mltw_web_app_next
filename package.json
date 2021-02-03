@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next -p 3001",
-    "build": "next build",
-    "start": "next start && next export"
+    "build": "next build && next export",
+    "start": "next start"
   },
   "author": "hakii",
   "license": "ISC",
