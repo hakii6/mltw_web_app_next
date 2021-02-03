@@ -1,6 +1,6 @@
 // events index 
 
-import EventList from '../../components/events/EventList'
+import EventList from '../../components/Events/EventList'
 import axios from 'axios'
 // import env from '../env';
 
