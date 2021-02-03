@@ -13,7 +13,7 @@ const gachas = ({gachas}) => {
 }
 
 export async function getStaticProps(context) {
-	const res = await axios.get('http://localhost:8002/v1/gachas')
+	const res = await axios.get(process.env.api_host + 'v2/gachas')
 	const gachas = await res.data
 	console.log(res.status)
   return {

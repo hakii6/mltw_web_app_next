@@ -1,6 +1,6 @@
 // events index 
 
-import EventList from '../../components/Events/EventList'
+import EventList from '../../components/events/EventList'
 import axios from 'axios'
 // import env from '../env';
 
@@ -13,7 +13,7 @@ const events = ({events}) => {
 }
 
 export async function getStaticProps(context) {
-	const res = await axios.get('http://localhost:8002/v1/events')
+	const res = await axios.get(process.env.api_host + 'v2/events')
 	const events = await res.data
 	console.log(res.status)
   return {
