@@ -9,7 +9,8 @@ const ItemTest = ({ event }) => {
 	}
   return (
   	<div>
-  		<img src={event.Image} width="45" />{event.NameTW}
+  		<img src={event.Image} width="470px" height="170px" style={{marginTop:'30px'}}/>
+  		{event.NameTW}
 		</div>
   )
 }
