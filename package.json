@@ -20,7 +20,9 @@
     "next-images": "^1.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "reactstrap": "^8.9.0"
+    "reactstrap": "^8.9.0",
+    "sass": "^1.32.6",
+    "scss": "^0.2.4"
   },
   "devDependencies": {
     "@types/node": "^14.14.22",

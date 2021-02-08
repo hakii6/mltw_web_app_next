@@ -1,44 +1,69 @@
 import ItemTest from './ItemTest'
 // import EventItem from './EventItem'
-import { useState } from 'react'
-import styles from '../../styles/ScrollList.module.css'
+import { useState, useRef } from 'react'
+import styles from '../../styles/ScrollList.module.scss'
 
 
 const EventList = ({events}) => {
-  const [startX, setStartX] = useState(0)
-  const [x, setX] = useState(0)
-  const [y, setY] = useState(0)
-  const [active, setActive] = useState(false)
+  const contentRef = useRef(null) 
+  const scrollCircleRef = useRef(null) 
+  const controlScrollboxRef = useRef(null) 
 
-  function onDragStart(e) {
-    setActive(true)
-    setStartX(e.pageX)
-  }
+  // const onScroll = (e) => {
+  //   console.log(contentRef.current.top)
+  //   contentRef.current.top = "-" + controlScrollboxRef.current.scrollTop + "px";
+  //   scrollCircleRef.current.paddingTop = (controlScrollboxRef.current.scrollTop * 2) + "px";
+  // }
 
-  function onDragEnd(e) {
-    setActive(false)
-    console.log(x)
-    // setStartX(e.pageX)
-  }
+  const onWheel = (e) => {
+    console.log({
+      "contentRef.top": contentRef.current.top ,
+      "controlScrollboxRef.scrollTop": controlScrollboxRef.current.scrollTop
+    })
+    contentRef.current.style.top = "-" + controlScrollboxRef.current.scrollTop + "px";
+    scrollCircleRef.current.style.paddingTop = (controlScrollboxRef.current.scrollTop * 2) + "px";
 
-  function onDrag(e) {
-    if (active === true) {
-      setX(startX - e.pageX)
-      // console.log(startX - e.pageX)
-      // console.log(e.pageX)
-      // setX(x - startX)
-    }
+    console.log({
+      "contentRef.top": contentRef.current.top ,
+      "scrollCircleRef.paddingTop": scrollCircleRef.current.paddingTop
+    })
+
   }
 
   return (
-    <div className={styles.slideContainer}>
-          { events.map((event, key) => <ItemTest key={event.ID} event={event} /> ) }
-    </div>
+    <div onWheel={onWheel}>
+      <div id={styles.bgCircle} />
+      <div id={styles.visibleScrollbox}>
+          <div id={styles.visibleScrollboxCircle} />
+          <div ref={contentRef} id={styles.content}>
+              <div ref={scrollCircleRef} id={styles.scrollCircle} />
+              <div>
+                { events.map((event, key) => <ItemTest key={event.ID} event={event}/> ) }
+              </div>
+
+          </div>
+      </div>
+      <div ref={controlScrollboxRef} id={styles.controlScrollbox}>
+          <div id={styles.scrollLength} />
+      </div>
+      <div id={styles.topCircle} />
+
+
+      </div>
     )
 }
 
 export default EventList
 
+/*
+        <svg height="900" width="100">
+          <path d="M100,0 Q0,450 100,900" stroke="black" fill="transparent" />
+        </svg>
+          
+        <div className={styles.slideContainer} onScroll={onScroll}>
+          { events.map((event, key) => <ItemTest key={event.ID} event={event} scroll={scroll}/> ) }
+        </div>
+*/
 // style={{top: x, left:x}} onDragEnd={onDragEnd} onDragStart={onDragStart} onDrag={onDrag} >
 
 // item = new Item(event), items.push(item), console.log(item)

@@ -1,18 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import styles from '../../styles/ScrollList.module.scss'
 
 const ItemTest = ({ event }) => {
 
-	function run(e) {
-		// setX(Math.random() * 100 % 100 + "px")
-		// console.log(x)
-		// console.log(e.pageX)
-	}
+
+
   return (
   	<div>
-  		<img src={event.Image} width="470px" height="170px" style={{marginTop:'30px'}}/>
+  		<img src={event.Image} width="470px" height="170px"/>
   		{event.NameTW}
 		</div>
   )
 }
+
+// function checkUpdate(current) {
+// 	if (current === null) {
+// 		return null
+// 	} else {
+// 			console.log(current)
+
+// 		return current.getBoundingClientRect()
+// 	}
+// }
 
 export default ItemTest;
