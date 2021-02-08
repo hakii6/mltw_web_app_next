@@ -1,7 +1,7 @@
 import ItemTest from './ItemTest'
 // import EventItem from './EventItem'
 import { useState, useRef } from 'react'
-import styles from '../../styles/ScrollList.module.css'
+import styles from '../../styles/ScrollList.module.scss'
 
 
 const EventList = ({events}) => {
