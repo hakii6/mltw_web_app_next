@@ -1,49 +1,93 @@
-/*.slideBox {
-	display: flex;
+.content {
+  position: relative;
+  height: 800px;
+  overflow: hidden;
+  border: 2px solid;
 }
 
-.slideContainer {
-  display: flex;
-  flex-basis:auto;
-  flex-direction: column;
-  align-items: left;
-  max-height: 100rem;	
-  overflow-y: auto;
-  flex-basis: 100px;
-  margin: auto;
+.box {
+  position: absolute;
+  left: 100px;
+  top: -200px;
+}
+/*.boxA {
+  display: none;
+  position: absolute;
+}*/
 
-  width: 1200px;
-  height: 900px;
+@keyframes rotate {
+  to {
+    transform: rotate(720deg);
+    transform-origin: 50% 50%;
+  }
 }
 
-.slideItem {
-	position: relative;
-	margin: auto;
-	align-self: left;
-	border: 2px solid;
+/* The element to apply the animation to */
+.animationTest {
+  width: 10px;
+  height: 100px;
+  background-color: red;
+  animation: rotate 3s linear infinite;
+/*  animation-play-state: paused;
+*/  animation-direction: reverse;
+}
+
+
+/*#circleList
+{
+    width:300px;
+    height:300px;
+    position:relative;
+    margin:0;
+    padding:0;
+    list-style:none;
+    border:solid 2px #ccc;
+    left:50%;
+    top:20px;
+    margin-left:-150px;
+}
+
+#circleList li
+{
+    display:block;
+    position:absolute;
+    background:#ccc;
+    font-family:arial;
+    color:#666;
+    text-align:center;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;      
+    width:30px;
+    height:30px;
+    line-height:30px;
+    margin:-15px 0 0 -15px;
 }
 
 
 */
+
 /* ====================================================== */
 /*                       Appearance                       */
 /* ====================================================== */
 /* The visible scrollbox with visible content */
-#visibleScrollbox {
+/*#visibleScrollbox {
     position: absolute;
-    background: white;
+    right: 100px;
+    background: grey;
     margin: 100px 200px;
-    width: 700px;
-    height: 380px;
+    width: 1500px;
+    height: 800px;
     overflow: hidden;
-}
+}*/
 
 /* Positioned over to the left to move everything over a bit */
-#content {
+/*#content {
+    display: flexbox;
     position: relative;
-    left: -170px;
-    width: 815px;
-}
+    left: 20px;
+    width: 1500px;
+}*/
 
 /* ====================================================== */
 /* This is the "circle" that affects the text wrapping. */
@@ -51,16 +95,15 @@
 /* "shape-outside: circle()" attribute is what makes the */
 /* text wrap around it properly. */
 /* ====================================================== */
-#scrollCircle {
+/*#scrollCircle {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 700px;
+    height: 700px;
     float: left;
     shape-outside: circle();
     margin: 20px;
-    /* border-radius: 50%; */
-    /* background: rgba(255, 0, 0, 0.5); */
-}
+
+}*/
 /* ====================================================== */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
@@ -72,55 +115,22 @@
 /* color is utilized to make it invisible (but we don't */
 /* use the "visibility" attribute because we still need */
 /* to see and use the scrollbar). */
-#controlScrollbox {
+/*#controlScrollbox {
     position: absolute;
     top: 100px;
     left: 200px;
-    /* background: rgba(255, 0, 0, .5); */
-    width: 700px;
-    height: 380px;
+    width: 1500px;
+    height: 800px;
     overflow-y: auto;
     overflow-x: hidden;
     pointer-events: scroll;
-}
+}*/
 
 /* This controls the length of the control scrollbox. */
 /* Set this to an appopriate length for your content. */
-#scrollLength {
-    height: 1600px;
-}
+/*#scrollLength {
+    height: 30000px;
+}*/
 /* ====================================================== */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-
-
-/* The following circles are for visual flair only */
-#bgCircle {
-    position: absolute;
-    top: 140px;
-    left: 45px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: #1B4859;
-}
-
-#visibleScrollboxCircle {
-    position: absolute;
-    top: 40px;
-    left: -155px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: #547C8C;
-}
-
-#topCircle {
-    position: absolute;
-    top: 160px;
-    left: 65px;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: #809BA6;
-}

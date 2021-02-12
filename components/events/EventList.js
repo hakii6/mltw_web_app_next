@@ -1,40 +1,67 @@
-import ItemTest from './ItemTest'
-// import EventItem from './EventItem'
-import { useState, useRef } from 'react'
+// import ItemTest from './ItemTest'
+import { useState, useEffect, useRef } from 'react'
 import styles from '../../styles/ScrollList.module.scss'
 
 
 const EventList = ({events}) => {
-  const contentRef = useRef(null) 
-  const scrollCircleRef = useRef(null) 
-  const controlScrollboxRef = useRef(null) 
+  const listRef = useRef(null)
+  const [scroll, setScroll] = useState(0)
 
-  // const onScroll = (e) => {
-  //   console.log(contentRef.current.top)
-  //   contentRef.current.top = "-" + controlScrollboxRef.current.scrollTop + "px";
-  //   scrollCircleRef.current.paddingTop = (controlScrollboxRef.current.scrollTop * 2) + "px";
-  // }
+  let fields = events.map((event, index) => <img className={styles.box} src={event.Image} width="470px" height="170px"/> )
+  useEffect(() => {
+    if (scroll < events.length && scroll >= 0) {
+      for (var i = 0; scroll + i + 5 < events.length; i++) {
+        listRef.current.children[scroll + i].style.top = (i * 200).toString() + "px"
+        // console.log(listRef.current.children[scroll + i].style.transform)
+      }
+      
+
+    }
+  }, [scroll]);
 
   const onWheel = (e) => {
-    console.log({
-      "contentRef.top": contentRef.current.top ,
-      "controlScrollboxRef.scrollTop": controlScrollboxRef.current.scrollTop
-    })
-    contentRef.current.style.top = "-" + controlScrollboxRef.current.scrollTop + "px";
-    scrollCircleRef.current.style.paddingTop = (controlScrollboxRef.current.scrollTop * 2) + "px";
 
-    console.log({
-      "contentRef.top": contentRef.current.top ,
-      "scrollCircleRef.paddingTop": scrollCircleRef.current.paddingTop
-    })
+    if (scroll < events.length && scroll >= 0) {
+      for (var i = scroll; i + 5 < events.length; i++) {
+        listRef.current.children[i].style.top = "-200px"
+      }
+      // console.log(listRef.current.children[scroll].style.top)
+      setScroll(e.deltaY / 100 + scroll)
+    }
 
+    if (scroll < 0) {
+      setScroll(0)
+    }
   }
 
   return (
     <div onWheel={onWheel}>
-      <div id={styles.bgCircle} />
+      <div ref={listRef} className={styles.content}>
+        { fields }
+      </div>
+
+    </div>
+    )
+}
+
+export default EventList
+
+
+
+/*
+
+      <ul id="circleList">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+          <li>7</li>
+          <li>8</li>
+      </ul>
+
       <div id={styles.visibleScrollbox}>
-          <div id={styles.visibleScrollboxCircle} />
           <div ref={contentRef} id={styles.content}>
               <div ref={scrollCircleRef} id={styles.scrollCircle} />
               <div>
@@ -46,16 +73,9 @@ const EventList = ({events}) => {
       <div ref={controlScrollboxRef} id={styles.controlScrollbox}>
           <div id={styles.scrollLength} />
       </div>
-      <div id={styles.topCircle} />
 
 
-      </div>
-    )
-}
 
-export default EventList
-
-/*
         <svg height="900" width="100">
           <path d="M100,0 Q0,450 100,900" stroke="black" fill="transparent" />
         </svg>

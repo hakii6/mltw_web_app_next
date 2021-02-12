@@ -1,26 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import styles from '../../styles/ScrollList.module.scss'
 
-const ItemTest = ({ event }) => {
-
-
+const ItemTest = ({ index, event}) => {
 
   return (
-  	<div>
-  		<img src={event.Image} width="470px" height="170px"/>
-  		{event.NameTW}
-		</div>
+  	<>
+  		<img className={styles.box} style={{zIndex: index * (-1)}} src={event.Image} width="470px" height="170px"/>
+		</>
   )
 }
 
-// function checkUpdate(current) {
-// 	if (current === null) {
-// 		return null
-// 	} else {
-// 			console.log(current)
-
-// 		return current.getBoundingClientRect()
-// 	}
-// }
 
 export default ItemTest;
