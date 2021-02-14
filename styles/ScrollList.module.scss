@@ -5,22 +5,43 @@
   border: 2px solid;
 }
 
-.box {
-  position: absolute;
-  left: 100px;
-  top: -200px;
-}
 /*.boxA {
   display: none;
   position: absolute;
 }*/
 
+@keyframes move {
+  0% { top: 20%; left: 50%; }
+  20% { top: 40%; left: 30%; }
+  40% { top: 60%; left: 10%; }
+  60% { top: 80%; left: 30%; }
+  100% { top: 90%; left: 50%; }
+
+}
+
+.square {
+/*    width: 100px;
+    height: 100px;*/
+    background: blue;
+    display: block;
+    position: absolute;
+
+    /* animation 參數設定 */
+    animation: move 5s linear 1;    /*動畫名稱，需與 keyframe 名稱對應*/
+/*    animation-duration: 5s;    /*動畫持續時間，單位為秒*/
+    animation-play-state: paused;
+/*    animation-delay: 2s;*/    /*動畫延遲開始時間*/
+/*    animation-iteration-count: 1; */   /*動畫次數，infinite 為無限次*/    
+}
+
+
+/*
 @keyframes rotate {
   to {
     transform: rotate(720deg);
     transform-origin: 50% 50%;
   }
-}
+}*/
 
 /* The element to apply the animation to */
 .animationTest {

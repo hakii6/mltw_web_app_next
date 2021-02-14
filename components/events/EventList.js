@@ -7,13 +7,21 @@ const EventList = ({events}) => {
   const listRef = useRef(null)
   const [scroll, setScroll] = useState(0)
 
-  let fields = events.map((event, index) => <img className={styles.box} src={event.Image} width="470px" height="170px"/> )
+  let fields = events.map((event, index) => <img className={styles.square} style={{animationDelay: index + "s"}} src={event.Image} width="470px" height="170px"/> )
   useEffect(() => {
     if (scroll < events.length && scroll >= 0) {
-      for (var i = 0; scroll + i + 5 < events.length; i++) {
-        listRef.current.children[scroll + i].style.top = (i * 200).toString() + "px"
-        // console.log(listRef.current.children[scroll + i].style.transform)
-      }
+      console.log(scroll);
+      console.log(listRef.current.children[scroll].style);
+      [].forEach.call(listRef.current.children, (child, index) => {
+        child.style.animationDelay = (index - scroll) + "s"
+        // console.log(child.style.top)
+      })
+
+      // fields = events.map((event, index) => <img className={styles.square} style={{animationDelay: (index - scroll) + "s",}} src={event.Image} width="470px" height="170px"/> )
+      // for (var i = 0; scroll + i + 5 < events.length; i++) {
+      //   listRef.current.children[scroll + i].style.top = (i * 200).toString() + "px"
+      //   // console.log(listRef.current.children[scroll + i].style.transform)
+      // }
       
 
     }
@@ -21,16 +29,13 @@ const EventList = ({events}) => {
 
   const onWheel = (e) => {
 
-    if (scroll < events.length && scroll >= 0) {
-      for (var i = scroll; i + 5 < events.length; i++) {
-        listRef.current.children[i].style.top = "-200px"
-      }
-      // console.log(listRef.current.children[scroll].style.top)
-      setScroll(e.deltaY / 100 + scroll)
-    }
-
-    if (scroll < 0) {
+    let temp = e.deltaY / 100 + scroll
+    if (temp < 0) {
       setScroll(0)
+    } else if (temp >= events.length) {
+      setScroll(events.length - 1)
+    } else {
+      setScroll(temp)
     }
   }
 
