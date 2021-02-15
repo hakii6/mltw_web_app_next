@@ -7,29 +7,29 @@ const EventList = ({events}) => {
   const listRef = useRef(null)
   const [scroll, setScroll] = useState(0)
 
-  let fields = events.map((event, index) => <img className={styles.square} style={{animationDelay: index + "s"}} src={event.Image} width="470px" height="170px"/> )
+  let fields = events.map((event, index) => 
+    <img className={styles.square} style={{animationDelay: index + "s"}} src={event.Image} width="470px" height="170px"/> 
+    )
   useEffect(() => {
     if (scroll < events.length && scroll >= 0) {
-      console.log(scroll);
-      console.log(listRef.current.children[scroll].style);
+      // console.log(scroll);
+      // console.log(listRef.current.children[scroll].style);
       [].forEach.call(listRef.current.children, (child, index) => {
+        // console.log(index-scroll)
         child.style.animationDelay = (index - scroll) + "s"
         // console.log(child.style.top)
       })
-
-      // fields = events.map((event, index) => <img className={styles.square} style={{animationDelay: (index - scroll) + "s",}} src={event.Image} width="470px" height="170px"/> )
-      // for (var i = 0; scroll + i + 5 < events.length; i++) {
-      //   listRef.current.children[scroll + i].style.top = (i * 200).toString() + "px"
-      //   // console.log(listRef.current.children[scroll + i].style.transform)
-      // }
       
 
     }
   }, [scroll]);
 
-  const onWheel = (e) => {
-
-    let temp = e.deltaY / 100 + scroll
+  const onScroll = (e) => {
+    // console.log(scroll)
+    // console.log({scrollTop: e.target.scrollTop})
+    let temp = e.target.scrollTop / 100
+    // console.log(scroll)
+    // console.log(temp)
     if (temp < 0) {
       setScroll(0)
     } else if (temp >= events.length) {
@@ -39,10 +39,26 @@ const EventList = ({events}) => {
     }
   }
 
+  // const onWheel = (e) => {
+
+  //   let temp = e.deltaY / 100 + scroll
+  //   if (temp < 0) {
+  //     setScroll(0)
+  //   } else if (temp >= events.length) {
+  //     setScroll(events.length - 1)
+  //   } else {
+  //     setScroll(temp)
+  //   }
+  // }
+    // <div onWheel={onWheel}>
+
   return (
-    <div onWheel={onWheel}>
+    <div>
       <div ref={listRef} className={styles.content}>
         { fields }
+      </div>
+      <div onScroll={onScroll} id = {styles.controlScrollbox}>
+        <div id = {styles.scrollLength}></div>
       </div>
 
     </div>

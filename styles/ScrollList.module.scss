@@ -1,8 +1,23 @@
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(30deg); }
+  40% { transform: rotate(60deg); }
+  60% { transform: rotate(90deg); }
+  100% { transform: rotate(120deg); }
+}
+
 .content {
   position: relative;
   height: 800px;
   overflow: hidden;
   border: 2px solid;
+
+    animation: rotate 5s linear infinite;    /*動畫名稱，需與 keyframe 名稱對應*/
+/*    animation-duration: 5s;    /*動畫持續時間，單位為秒*/
+    animation-play-state: paused;
+    animation-fill-mode: both;
+/*    animation-delay: 2s;    /*動畫延遲開始時間*/
+
 }
 
 /*.boxA {
@@ -16,7 +31,6 @@
   40% { top: 60%; left: 10%; }
   60% { top: 80%; left: 30%; }
   100% { top: 90%; left: 50%; }
-
 }
 
 .square {
@@ -30,63 +44,10 @@
     animation: move 5s linear 1;    /*動畫名稱，需與 keyframe 名稱對應*/
 /*    animation-duration: 5s;    /*動畫持續時間，單位為秒*/
     animation-play-state: paused;
+    animation-fill-mode: both;
 /*    animation-delay: 2s;*/    /*動畫延遲開始時間*/
 /*    animation-iteration-count: 1; */   /*動畫次數，infinite 為無限次*/    
 }
-
-
-/*
-@keyframes rotate {
-  to {
-    transform: rotate(720deg);
-    transform-origin: 50% 50%;
-  }
-}*/
-
-/* The element to apply the animation to */
-.animationTest {
-  width: 10px;
-  height: 100px;
-  background-color: red;
-  animation: rotate 3s linear infinite;
-/*  animation-play-state: paused;
-*/  animation-direction: reverse;
-}
-
-
-/*#circleList
-{
-    width:300px;
-    height:300px;
-    position:relative;
-    margin:0;
-    padding:0;
-    list-style:none;
-    border:solid 2px #ccc;
-    left:50%;
-    top:20px;
-    margin-left:-150px;
-}
-
-#circleList li
-{
-    display:block;
-    position:absolute;
-    background:#ccc;
-    font-family:arial;
-    color:#666;
-    text-align:center;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;      
-    width:30px;
-    height:30px;
-    line-height:30px;
-    margin:-15px 0 0 -15px;
-}
-
-
-*/
 
 /* ====================================================== */
 /*                       Appearance                       */
@@ -136,22 +97,23 @@
 /* color is utilized to make it invisible (but we don't */
 /* use the "visibility" attribute because we still need */
 /* to see and use the scrollbar). */
-/*#controlScrollbox {
-    position: absolute;
-    top: 100px;
-    left: 200px;
-    width: 1500px;
-    height: 800px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    pointer-events: scroll;
-}*/
+#controlScrollbox {
+  border: 0px solid;
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  width: 1500px;
+  height: 800px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  pointer-events: scroll;
+}
 
 /* This controls the length of the control scrollbox. */
 /* Set this to an appopriate length for your content. */
-/*#scrollLength {
+#scrollLength {
     height: 30000px;
-}*/
+}
 /* ====================================================== */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
