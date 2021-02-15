@@ -8,16 +8,15 @@ const EventList = ({events}) => {
   const [scroll, setScroll] = useState(0)
 
   let fields = events.map((event, index) => 
-    <img className={styles.square} style={{animationDelay: index + "s"}} src={event.Image} width="470px" height="170px"/> 
+    <div className={styles.square}>
+      <img className={styles.square} style={{animationDelay: index + "s"}} src={event.Image} width="470px" height="170px"/>
+    </div>
     )
   useEffect(() => {
     if (scroll < events.length && scroll >= 0) {
-      // console.log(scroll);
-      // console.log(listRef.current.children[scroll].style);
       [].forEach.call(listRef.current.children, (child, index) => {
-        // console.log(index-scroll)
-        child.style.animationDelay = (index - scroll) + "s"
-        // console.log(child.style.top)
+        child.children[0].style.animationDelay = (index - scroll) + "s";
+        child.style.animationDelay = (index - scroll) + "s";
       })
       
 
@@ -25,11 +24,8 @@ const EventList = ({events}) => {
   }, [scroll]);
 
   const onScroll = (e) => {
-    // console.log(scroll)
-    // console.log({scrollTop: e.target.scrollTop})
     let temp = e.target.scrollTop / 100
-    // console.log(scroll)
-    // console.log(temp)
+
     if (temp < 0) {
       setScroll(0)
     } else if (temp >= events.length) {
@@ -39,18 +35,6 @@ const EventList = ({events}) => {
     }
   }
 
-  // const onWheel = (e) => {
-
-  //   let temp = e.deltaY / 100 + scroll
-  //   if (temp < 0) {
-  //     setScroll(0)
-  //   } else if (temp >= events.length) {
-  //     setScroll(events.length - 1)
-  //   } else {
-  //     setScroll(temp)
-  //   }
-  // }
-    // <div onWheel={onWheel}>
 
   return (
     <div>
@@ -66,6 +50,22 @@ const EventList = ({events}) => {
 }
 
 export default EventList
+
+/* for debug
+
+    <div>
+      <div className={styles.circle} />
+      <div ref={listRef} className={styles.content}>
+        { fields }
+      </div>
+      <div className={styles.squarePos}>aaaaaaaa</div>
+      <div onScroll={onScroll} id = {styles.controlScrollbox}>
+        <div id = {styles.scrollLength}></div>
+      </div>
+
+    </div>
+
+*/
 
 
 

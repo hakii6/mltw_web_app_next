@@ -1,102 +1,84 @@
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(30deg); }
-  40% { transform: rotate(60deg); }
-  60% { transform: rotate(90deg); }
-  100% { transform: rotate(120deg); }
-}
-
 .content {
   position: relative;
-  height: 800px;
+  height: 1080px;
   overflow: hidden;
   border: 2px solid;
 
-    animation: rotate 5s linear infinite;    /*動畫名稱，需與 keyframe 名稱對應*/
-/*    animation-duration: 5s;    /*動畫持續時間，單位為秒*/
-    animation-play-state: paused;
-    animation-fill-mode: both;
-/*    animation-delay: 2s;    /*動畫延遲開始時間*/
-
 }
-
 /*.boxA {
   display: none;
   position: absolute;
 }*/
 
+$steps: 11;
+$percent: 100 / $steps;
+$rad: 180 / $steps;
+// 1140
+// 1140 - 384
 @keyframes move {
-  0% { top: 20%; left: 50%; }
-  20% { top: 40%; left: 30%; }
-  40% { top: 60%; left: 10%; }
-  60% { top: 80%; left: 30%; }
-  100% { top: 90%; left: 50%; }
+  @for $i from 0 through $steps {
+    #{($i * $percent) + "%"} {
+      transform-origin: 756px 0px;
+      transform: rotate(($i * ($rad)) - 30 + deg);
+    } 
+  }
 }
 
-.square {
-/*    width: 100px;
-    height: 100px;*/
+@keyframes moveA {
+  @for $i from 0 through $steps {
+    #{($i * $percent) + "%"} {
+      transform: rotate(($i * (0 - $rad)) + 30 + deg);
+    } 
+  }
+}
+
+.squarePos {
     background: blue;
     display: block;
     position: absolute;
 
-    /* animation 參數設定 */
-    animation: move 5s linear 1;    /*動畫名稱，需與 keyframe 名稱對應*/
-/*    animation-duration: 5s;    /*動畫持續時間，單位為秒*/
-    animation-play-state: paused;
-    animation-fill-mode: both;
-/*    animation-delay: 2s;*/    /*動畫延遲開始時間*/
-/*    animation-iteration-count: 1; */   /*動畫次數，infinite 為無限次*/    
+    top: 540px;
+    left: 384px;
 }
 
-/* ====================================================== */
-/*                       Appearance                       */
-/* ====================================================== */
-/* The visible scrollbox with visible content */
-/*#visibleScrollbox {
+.circle {
+  border: 2px solid red;
+
+  width: 1512px;
+  height: 1512px;
+
+  display: block;
+  position: absolute;
+
+  overflow-y: hidden;
+  top: -216px;
+  left: 384px;
+
+  z-index: -2;
+
+  border-radius:50%;
+}
+
+.square {
+    background: blue;
+    display: block;
     position: absolute;
-    right: 100px;
-    background: grey;
-    margin: 100px 200px;
-    width: 1500px;
-    height: 800px;
-    overflow: hidden;
-}*/
 
-/* Positioned over to the left to move everything over a bit */
-/*#content {
-    display: flexbox;
-    position: relative;
-    left: 20px;
-    width: 1500px;
-}*/
+    top: 540px;
+    left: 384px;
 
-/* ====================================================== */
-/* This is the "circle" that affects the text wrapping. */
-/* It needs dimensions, but no visible appearance.  The  */
-/* "shape-outside: circle()" attribute is what makes the */
-/* text wrap around it properly. */
-/* ====================================================== */
-/*#scrollCircle {
-    position: relative;
-    width: 700px;
-    height: 700px;
-    float: left;
-    shape-outside: circle();
-    margin: 20px;
+    animation: move 10s linear 1;
+    animation-play-state: paused;
+    animation-fill-mode: both;
 
-}*/
-/* ====================================================== */
-/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+}
 
+.square img {
+  animation: moveA 10s linear 1;
+  animation-play-state: paused;
+  animation-fill-mode: both;
+}
 
-/* ====================================================== */
-/*                        Control                         */
-/* ====================================================== */
-/* A direct copy of the visible textbox.  No background  */
-/* color is utilized to make it invisible (but we don't */
-/* use the "visibility" attribute because we still need */
-/* to see and use the scrollbar). */
 #controlScrollbox {
   border: 0px solid;
   position: absolute;
