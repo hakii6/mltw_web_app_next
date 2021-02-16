@@ -15,6 +15,11 @@ const EventList = ({events}) => {
   useEffect(() => {
     if (scroll < events.length && scroll >= 0) {
       [].forEach.call(listRef.current.children, (child, index) => {
+        if (Math.ceil(scroll - index) == 6) {
+          child.children[0].style.opacity = 1;
+        } else {
+          child.children[0].style.opacity = 0.35;
+        }
         child.children[0].style.animationDelay = (index - scroll) + "s";
         child.style.animationDelay = (index - scroll) + "s";
       })

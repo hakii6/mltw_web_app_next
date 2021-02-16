@@ -11,6 +11,7 @@
 }*/
 
 $steps: 11;
+$half: 6;
 $percent: 100 / $steps;
 $rad: 180 / $steps;
 // 1140
@@ -20,6 +21,13 @@ $rad: 180 / $steps;
     #{($i * $percent) + "%"} {
       transform-origin: 756px 0px;
       transform: rotate(($i * ($rad)) - 30 + deg);
+
+      // @if ($i == $half - 1 or $i == $half + 1) {
+      //   opacity: 0.3;
+      // }
+      // @else if ($i == $half){
+      //   opacity: 1;
+      // }
     } 
   }
 }
@@ -77,6 +85,7 @@ $rad: 180 / $steps;
   animation: moveA 10s linear 1;
   animation-play-state: paused;
   animation-fill-mode: both;
+  // opacity: 0.5;
 }
 
 #controlScrollbox {
